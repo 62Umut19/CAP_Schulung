@@ -6,6 +6,10 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^3.26.4",
+    "@sap-cloud-sdk/http-client": "^3.26.4",
+    "@sap-cloud-sdk/resilience": "^3.26.4",
+    "@sap-cloud-sdk/util": "^3.26.4",
     "@sap/cds": "^7",
     "express": "^4"
   },
@@ -16,5 +20,16 @@
   },
   "scripts": {
     "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "CE_PRODUCT_0002": {
+        "kind": "odata",
+        "model": "srv/external/CE_PRODUCT_0002",
+        "credentials": {
+          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_product/srvd_a2x/sap/product/0002"
+        }
+      }
+    }
   }
 }
