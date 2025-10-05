@@ -1,0 +1,7 @@
+code,locale,name,descr
+O,en,Open, open
+O,de,Offen, offen
+W,en,Invalid, invalid status
+W,de,Ungültig, Ungültig
+S,en,Sent, Sent
+S,de,Übermittlet, Übermittlet

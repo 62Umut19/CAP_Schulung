@@ -1,0 +1,3 @@
+ID,article_number,quantity,status_code,createdAt,createdBy,modifiedAt,modifiedBy,discrepancyExists,discrepancyReason
+22fdb758-e863-4426-af33-aa842e163474,21,5,O,2030-09-01,e1,2030-09-01,e1,null,
+418b164b-9c9d-4b56-8478-73d53e8b43c0,232,5,W,2030-09-01,e1,2030-09-01,e1,true,Theft by Employee
