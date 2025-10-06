@@ -27,10 +27,12 @@ annotate service.Inventory with @(
             Value: article.unit,
         },
         {
-            $Type: 'UI.DataField',
-            Label: 'Status',
-            Value: status.name
-        },
+            $Type                    : 'UI.DataField',
+            Label                    : 'Status',
+            Value                    : status.name,
+            Criticality              : criticality,
+            CriticalityRepresentation: #WithIcon
+        }
     ],
     UI.Identification: [{
         $Type : 'UI.DataFieldForAction',
@@ -59,9 +61,11 @@ annotate service.Inventory with @(
                 Value: article.unit,
             },
             {
-                $Type: 'UI.DataField',
-                Label: 'Status',
-                Value: status_code
+                $Type                    : 'UI.DataField',
+                Label                    : 'Status',
+                Value                    : status_code,
+                Criticality              : criticality,
+                CriticalityRepresentation: #WithIcon
             }
         ],
     },

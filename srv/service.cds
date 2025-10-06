@@ -2,7 +2,10 @@ using {demo as my} from '../db/schema.cds';
 
 service InventoryService {
     @odata.draft.enabled
-    entity Inventory as projection on my.Inventory actions {
+    entity Inventory as projection on my.Inventory {
+        *,
+        virtual null as criticality : Integer,
+    } actions {
         action sendInventoryInformation();
     };
 

@@ -302,5 +302,27 @@ module.exports = cds.service.impl(async function () {
     if(inventoryItem.status_code === 'S'){
       req.reject({status:400, message:'Already Sent!'})
     }
-  })
+  });
+  this.after("READ", [Inventory, Inventory.drafts], (data) => {
+    const inventoryItems = Array.isArray(data) ? data : [data];
+    inventoryItems.forEach((item) => {
+      if(item){
+        const statusCode = item.status?.code || item.status_code;
+        switch (statusCode) {
+          case 'O':
+            item.criticality = 5;
+            break;      
+          case 'W':
+            item.criticality = 1;
+            break;
+          case 'S':
+            item.criticality = 3;
+            break;
+          default:
+            item.criticality = 0;
+            break;
+        }
+      }
+    });
+  });
 });
