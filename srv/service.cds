@@ -2,7 +2,9 @@ using {demo as my} from '../db/schema.cds';
 
 service InventoryService {
     @odata.draft.enabled
-    entity Inventory as projection on my.Inventory;
+    entity Inventory as projection on my.Inventory actions {
+        action sendInventoryInformation();
+    };
 
     @readonly
     entity Articles  as

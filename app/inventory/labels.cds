@@ -1,17 +1,21 @@
 using InventoryService as service from '../../srv/service';
 
 annotate service.Inventory with @(
-    UI.HeaderInfo: {
+    UI.HeaderInfo    : {
         TypeName      : 'Inventory Reconcilliation',
         TypeNamePlural: 'Inventory Reconcilliation',
         Title         : {Value: article_number}
     },
-    UI.LineItem  : [
+    UI.LineItem      : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action: 'InventoryService.sendInventoryInformation',
+            Label : 'Send',
+        },
         {
             $Type: 'UI.DataField',
             Value: article_number,
         },
-
         {
             $Type: 'UI.DataField',
             Label: 'quantity',
@@ -27,7 +31,12 @@ annotate service.Inventory with @(
             Label: 'Status',
             Value: status.name
         },
-    ]
+    ],
+    UI.Identification: [{
+        $Type : 'UI.DataFieldForAction',
+        Action: 'InventoryService.sendInventoryInformation',
+        Label : 'Send'
+    }]
 );
 
 annotate service.Inventory with @(

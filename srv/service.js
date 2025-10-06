@@ -280,4 +280,27 @@ module.exports = cds.service.impl(async function () {
     });
     return { errors };
   };
+  this.on('sendInventoryInformation',Inventory,async (req)=>{
+    const inventoryItemId = req.params[0];
+    const inventoryItem = await SELECT(Inventory,inventoryItemId);
+    const discrepancyReasonExists = (inventoryItem.discrepancyReason) ||(inventoryItem.discrepancyReason?.length >= 10);
+    if(inventoryItem.status_code === 'O'){
+      if(inventoryItem.quantity<10){
+        cds.tx (async ()=>{
+        await UPDATE(Inventory,inventoryItemId).set({'status_code': 'W','discrepancyExists':true});
+      })
+        req.reject({status:400,message:'Discrepancy between quantities found!'})
+      }
+      await UPDATE(Inventory,req.params[0]).set({'status_code': 'S','discrepancyExists':false});
+    }
+    if(inventoryItem.status_code === 'W'){
+      if(!discrepancyReasonExists ){
+        req.reject({status:400,message:'discrepancy reason is empty or has less than 10 characters'})
+      }
+      await UPDATE(Inventory,req.params[0]).set({'status_code': 'S','discrepancyExists':true});
+    }
+    if(inventoryItem.status_code === 'S'){
+      req.reject({status:400, message:'Already Sent!'})
+    }
+  })
 });
