@@ -6,20 +6,20 @@
       "target": "/inventory/webapp/$1",
       "localDir": ".",
       "cacheControl": "no-cache, no-store, must-revalidate",
-      "authenticationType":"xsuaa"
+      "authenticationType": "xsuaa"
     },
     {
       "source": "^/appconfig/",
       "localDir": ".",
       "cacheControl": "no-cache, no-store, must-revalidate",
-      "authenticationType":"xsuaa"
+      "authenticationType": "xsuaa"
     },
     {
       "source": "^/(.*)$",
       "target": "$1",
       "destination": "srv-api",
       "csrfProtection": true,
-      "authenticationType":"xsuaa"
+      "authenticationType": "xsuaa"
     }
   ]
 }

@@ -13,7 +13,8 @@
     "@sap/cds": "^7",
     "express": "^4",
     "xlsx": "^0.18.5",
-    "@sap/xssec": "^3"
+    "@sap/xssec": "^3",
+    "@sap/cds-hana": "^2"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
@@ -36,7 +37,8 @@
         }
       },
       "[production]": {
-        "auth": "xsuaa"
+        "auth": "xsuaa",
+        "db": "hana"
       }
     }
   },
