@@ -116,6 +116,15 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable"
+                  },
+                  "actions": {
+                    "ExcelUpload": {
+                      "press": "inventory.ext.controller.ExcelUpload.uploadExcelFile",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": false,
+                      "text": "Upload Excel File"
+                    }
                   }
                 }
               }

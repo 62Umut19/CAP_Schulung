@@ -5,8 +5,16 @@ service InventoryService {
     entity Inventory as projection on my.Inventory;
 
     @readonly
-    entity Articles as projection on my.Articles {
-        *,
-        null as text : String
-    };
+    entity Articles  as
+        projection on my.Articles {
+            *,
+            null as text : String
+        };
+
+    @cds.persistence.skip
+    @odata.singleton
+    entity ExcelUpload {
+        @Core.MediaType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        excel : LargeBinary;
+    }
 }
