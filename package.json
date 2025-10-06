@@ -16,10 +16,12 @@
   "devDependencies": {
     "@cap-js/sqlite": "^1",
     "@sap/eslint-plugin-cds": "^3",
+    "@sap/ux-specification": "^1.136.7",
     "eslint": "^9"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-inventory": "cds watch --open inventory/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -31,5 +33,8 @@
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/inventory"
+  ]
 }
