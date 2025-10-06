@@ -5,7 +5,7 @@ service InventoryService {
         isDiscrepancyFacetVisible : Boolean;
         isSendButtonVisible       : Boolean;
     }
-    
+
     @odata.draft.enabled
     @(restrict: [
         {grant: [
@@ -30,6 +30,14 @@ service InventoryService {
         virtual null as criticality : Integer,
         virtual null as uiSettings  : UISettings
     } actions {
+        @(
+            cds.odata.bindingparameter.name: '_it',
+            Common.SideEffects             : {TargetProperties: [
+                '_it/status_code',
+                '_it/criticality',
+                '_it/uiSettings_isSendButtonVisible'
+            ]}
+        )
         action sendInventoryInformation();
     };
 
