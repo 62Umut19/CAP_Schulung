@@ -18,7 +18,7 @@ annotate service.Inventory with @(
         },
         {
             $Type: 'UI.DataField',
-            Label: 'quantity',
+            Label: '{@i18n>quantity}',
             Value: quantity,
         },
         {
