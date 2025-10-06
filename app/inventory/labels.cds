@@ -35,9 +35,13 @@ annotate service.Inventory with @(
         }
     ],
     UI.Identification: [{
-        $Type : 'UI.DataFieldForAction',
-        Action: 'InventoryService.sendInventoryInformation',
-        Label : 'Send'
+        $Type        : 'UI.DataFieldForAction',
+        Action       : 'InventoryService.sendInventoryInformation',
+        Label        : 'Send',
+        ![@UI.Hidden]: {$edmJson: {$Ne: [
+            {$Path: 'uiSettings_isSendButtonVisible'},
+            true
+        ]}}
     }]
 );
 
@@ -86,10 +90,10 @@ annotate service.Inventory with @(
             Target: '@UI.FieldGroup#InventoryInfoGroup',
         },
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'DiscrepancyInfo',
-            Label : 'Discrepancy Reason',
-            Target: '@UI.FieldGroup#DiscrepancyInfoGroup'
+            $Type        : 'UI.ReferenceFacet',
+            ID           : 'DiscrepancyInfo',
+            Label        : 'Discrepancy Reason',
+            Target       : '@UI.FieldGroup#DiscrepancyInfoGroup',
         }
     ]
 );

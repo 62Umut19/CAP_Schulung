@@ -1,6 +1,11 @@
 using {demo as my} from '../db/schema.cds';
 
 service InventoryService {
+    type UISettings {
+        isDiscrepancyFacetVisible : Boolean;
+        isSendButtonVisible       : Boolean;
+    }
+    
     @odata.draft.enabled
     @(restrict: [
         {grant: [
@@ -23,10 +28,10 @@ service InventoryService {
     entity Inventory as projection on my.Inventory {
         *,
         virtual null as criticality : Integer,
+        virtual null as uiSettings  : UISettings
     } actions {
         action sendInventoryInformation();
     };
-
 
     @readonly
     entity Articles  as
