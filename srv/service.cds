@@ -1,5 +1,6 @@
 using {demo as my} from '../db/schema.cds';
 
+@(requires: 'authenticated-user')
 service InventoryService {
     type UISettings {
         isDiscrepancyFacetVisible : Boolean;

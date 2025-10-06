@@ -12,7 +12,8 @@
     "@sap-cloud-sdk/util": "^3.26.4",
     "@sap/cds": "^7",
     "express": "^4",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "@sap/xssec": "^3"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
@@ -32,6 +33,9 @@
         "credentials": {
           "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_product/srvd_a2x/sap/product/0002"
         }
+      },
+      "[production]": {
+        "auth": "xsuaa"
       }
     }
   },
