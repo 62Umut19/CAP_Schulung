@@ -239,8 +239,9 @@ module.exports = cds.service.impl(async function () {
         errors.forEach((err) => req.error(err));
         req.reject();
       }
-      const insertQuery = INSERT.into(entity, mappedData);
-      await this.run(insertQuery);
+      for (const item of mappedData) {
+        await this.run(INSERT.into(Inventory).entries(item));
+      }
       req.notify({
         message: "Upload Successful",
         status: 200,
@@ -267,10 +268,8 @@ module.exports = cds.service.impl(async function () {
       }
     });
     const articlesInInventory = await SELECT.from(Inventory).where({
-      and: {
-        article_number: { in: articleNumbers },
-        status_code: { in: ["O", "W"] },
-      },
+      article_number: { in: articleNumbers },
+      status_code: { in: ["O", "W"] },
     });
     articlesInInventory.forEach((item) => {
       errors.push({
