@@ -9,7 +9,13 @@
     ],
     "main": "webapp/index.html",
     "scripts": {
+        "buildui5": "ui5 build preload --clean-dest --config ui5-deploy.yaml --include-task=generateCachebusterInfo",
         "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
     },
-    "devDependencies": { }
+    "devDependencies": { 
+        "ui5-task-zipper": "^0.5.1",
+        "@ui5/cli": "^4.0.8",
+        "ui5-tooling-transpile": "^3.5.0",
+        "ui5-middleware-livereload": "^3.1.0"
+    }
 }
