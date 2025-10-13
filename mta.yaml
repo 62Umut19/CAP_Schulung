@@ -52,15 +52,50 @@ modules:
           url: ~{srv-url}
           forwardAuthToken: true
       - name: cap-schulung-aldinord-auth
+      - name: ui5-standalone-html5repo-runtime
 
-  - name: cap-schulung-aldinord-ui
+
+  - name: ui5app
     type: html5
-    path: app
+    path: app/inventory
     build-parameters:
-      supported-platforms:
-        []
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run buildui5
+      supported-platforms: []
+
+
+  - name: html5-deployer
+    type: com.sap.application.content
+    path: app/inventory
+    requires:
+      - name: ui5-shared-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - ui5app.zip
+          name: ui5app
+          target-path: resources/
+
 
 resources:
+  - name: ui5-shared-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+      service-key:
+        name: ui5-shared-repo-host-key
+  - name: ui5-standalone-html5repo-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
   - name: cap-schulung-aldinord-destination
     type: org.cloudfoundry.managed-service
     parameters:

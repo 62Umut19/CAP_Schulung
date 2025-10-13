@@ -1,7 +1,7 @@
 {
   "welcomeFile": "/index.html",
   "routes": [
-      {
+    {
       "source": "^/odata/v4/(.*)$",
       "target": "/odata/v4/$1",
       "destination": "srv-api",
@@ -9,16 +9,10 @@
       "authenticationType": "xsuaa"
     },
     {
-      "source": "^/appconfig/",
-      "localDir": ".",
-      "cacheControl": "no-cache, no-store, must-revalidate",
-      "authenticationType": "xsuaa"
-    },
-    {
       "source": "^(.*)$",
-      "target": "/inventory/$1",
-      "cacheControl": "no-cache, no-store, must-revalidate",
+      "target": "$1",
       "service": "html5-apps-repo-rt",
+      "cacheControl": "no-cache, no-store, must-revalidate",
       "authenticationType": "xsuaa"
     }
   ]
